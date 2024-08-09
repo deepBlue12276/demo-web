@@ -17,7 +17,7 @@
                     <img class="menu-icon" src="@/assets/images/菜单图标 (1) copy.png" alt="" />
                     <span>模型配置</span>
                 </el-menu-item>
-                <el-menu-item index="3" @click="menuClick('/gd/mxConfig')">
+                <el-menu-item index="3" @click="menuClick('/gd/pg')">
                     <img class="menu-icon" src="@/assets/images/菜单图标 (2) copy.png" alt="" />
                     <span>执行力评估</span>
                 </el-menu-item>
@@ -102,7 +102,7 @@
                 background: #111037;
                 width: 100%;
                 height: 100%;
-                overflow: hidden;
+                overflow: scroll;
                 border-radius: 5px;
             }
         }

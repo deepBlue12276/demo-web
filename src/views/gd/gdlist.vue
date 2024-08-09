@@ -7,7 +7,7 @@
                         <img src="@/assets/images/Frame 427319103.png" alt="" />
                         <img src="@/assets/images/Frame 427319111.png" alt="" />
                         <img src="@/assets/images/Frame 427319114.png" alt="" />
-                        <img src="@/assets/images/Frame 427319115 (1).png" alt="" />
+                        <img src="@/assets/images/Frame 427319115 copy.png" alt="" />
                     </div>
                 </el-tab-pane>
                 <el-tab-pane label="完结工单" name="v2"

@@ -24,6 +24,10 @@ const routes = [
             {
                 path: '/gd/mxConfig',
                 component: () => import('@/views/gd/mxConfig.vue')
+            },
+            {
+                path: '/gd/pg',
+                component: () => import('@/views/gd/pg.vue')
             }
         ]
     },
