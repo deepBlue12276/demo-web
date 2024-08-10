@@ -22,7 +22,7 @@
                     <span>执行力评估</span>
                 </el-menu-item>
             </el-menu>
-            <div class="content" v-loading="loading">
+            <div v-loading="loading" class="content">
                 <div class="view">
                     <router-view></router-view>
                 </div>
@@ -33,6 +33,7 @@
 <script setup>
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
+
     const loading = ref(false);
     const router = useRouter();
     const menuClick = (path) => {
@@ -104,6 +105,15 @@
                 height: 100%;
                 overflow: scroll;
                 border-radius: 5px;
+                /* 隐藏垂直滚动条 */
+                &::-webkit-scrollbar {
+                    width: 0;
+                }
+
+                /* 隐藏水平滚动条 */
+                &::-webkit-scrollbar {
+                    height: 0;
+                }
             }
         }
     }

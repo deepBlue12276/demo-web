@@ -29,7 +29,7 @@
                 </el-tab-pane>
             </el-tabs>
         </div>
-        <div class="content" v-loading="loading">
+        <div v-loading="loading" class="content">
             <!-- <img src="@/assets/images/Frame 427319104.png" alt="" />
             <div class="table">
                 <el-table border :data="tableData[activeName]" width="auto" header-row-class-name="table-head">
@@ -42,14 +42,15 @@
                     />
                 </el-table>
             </div> -->
-            <img src="@/assets/images/Frame 427319114 (1).png" alt="" v-if="activeName == 'v1' && !loading" />
-            <img src="@/assets/images/Frame 427319114 (2).png" alt="" v-if="activeName == 'v2' && !loading" />
-            <img src="@/assets/images/Frame 427319114 (3).png" alt="" v-if="activeName == 'v3' && !loading" />
+            <img v-if="activeName == 'v1' && !loading" src="@/assets/images/Frame 427319114 (1).png" alt="" />
+            <img v-if="activeName == 'v2' && !loading" src="@/assets/images/Frame 427319114 (2).png" alt="" />
+            <img v-if="activeName == 'v3' && !loading" src="@/assets/images/Frame 427319114 (3).png" alt="" />
         </div>
     </div>
 </template>
 <script setup>
     import { ref } from 'vue';
+
     const tableData = ref({
         v1: [
             {
@@ -82,6 +83,14 @@
 <style scoped lang="scss">
     .list-page {
         background: #000928;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+
+        /* 隐藏水平滚动条 */
+        &::-webkit-scrollbar {
+            height: 0;
+        }
         .head {
             background: #111037;
             padding: 20px 0;

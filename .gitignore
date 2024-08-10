@@ -24,7 +24,8 @@ node_modules/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/nbdist/
+/dist/*
+dist/
 /.nb-gradle/
 gradlew
 gradlew.bat

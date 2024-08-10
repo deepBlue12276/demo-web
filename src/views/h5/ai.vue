@@ -1,12 +1,12 @@
 <template>
     <div class="wrap">
         <img src="@/assets/images/Group 1312314564.png" alt="" class="top" />
-        <div class="msg-box" ref="msgBox">
+        <div ref="msgBox" class="msg-box">
             <div
-                class="msg"
                 v-for="msg in msgList"
-                @scroll="onScroll"
+                class="msg"
                 :style="'justify-content:flex-' + (msg.type == 'user' ? 'end' : 'start')"
+                @scroll="onScroll"
             >
                 <template v-if="msg.type == 'user'">
                     <div class="user-msg">
@@ -14,7 +14,7 @@
                     </div>
                 </template>
                 <div v-else v-loading="msg.loading" class="ai-msg-box">
-                    <img :src="msg.msg" alt="" class="ai-msg" v-show="!msg.loading" />
+                    <img v-show="!msg.loading" :src="msg.msg" alt="" class="ai-msg" />
                 </div>
             </div>
         </div>
@@ -24,22 +24,23 @@
                 v-model="inputValue"
                 placeholder="欢迎向我提问"
                 change="onChange"
-                @search="onSearch"
                 left-icon=""
                 shape="round"
                 class="input"
+                @search="onSearch"
             ></van-search>
             <div class="right"></div>
         </div>
     </div>
 </template>
 <script setup>
+    import { ref, nextTick } from 'vue';
     import msg1 from '@/assets/images/Frame 1597880501.png';
     import msg2 from '@/assets/images/Frame 1597880503.png';
     import msg3 from '@/assets/images/Frame 1597880506.png';
     import msg4 from '@/assets/images/Frame 1597880505.png';
     import msg5 from '@/assets/images/Frame 1597880508.png';
-    import { ref, nextTick } from 'vue';
+
     const msgBox = ref();
     const msgList = ref([]);
     const inputValue = ref('');
@@ -82,22 +83,22 @@
                     msgList.value[msgList.value.length - 1].loading = false;
                 }, 500);
                 nextTick(() => {
-                    msgBox.value.scrollTop = msgBox.value.scrollHeight;
+                    setTimeout(() => {
+                        msgBox.value.scrollTop = 9999;
+                    }, 500);
                 });
             }, 500);
         }
         nextTick(() => {
-            msgBox.value.scrollTop = 9999;
-            console.log(msgBox.value.scrollTop);
-            console.log(msgBox.value.scrollHeight);
-            console.log(msgBox.value.clientHeight);
-            console.log(msgBox.value.offsetHeight);
+            setTimeout(() => {
+                msgBox.value.scrollTop = 9999;
+            }, 500);
         });
     };
 </script>
 <style scoped lang="scss">
     .wrap {
-        background: #b5d4fd;
+        background: #e9f2ff;
         height: 100%;
         .top {
             width: 100%;
@@ -120,6 +121,7 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+            margin-bottom: 120px;
 
             .msg {
                 width: 100%;
@@ -152,7 +154,7 @@
             height: 120px;
             width: 100%;
             background: #fff;
-            position: absolute;
+            position: fixed;
             bottom: 0;
             z-index: 15;
             .voice {

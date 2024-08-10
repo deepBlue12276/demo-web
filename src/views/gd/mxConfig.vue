@@ -1,6 +1,6 @@
 <template>
     <div class="list-page">
-        <div class="head" v-if="showForm.table">
+        <div v-if="showForm.table" class="head">
             <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
                 <el-tab-pane label="工单预评估模型" name="v1" class="v1"> </el-tab-pane>
                 <el-tab-pane label="工单健康度模型" name="v2"> ></el-tab-pane>
@@ -15,67 +15,67 @@
                 <img src="@/assets/images/Frame 427319115 (2).png" alt="" />
             </div>
         </div>
-        <div class="content" v-loading="loading" v-if="showForm.table">
+        <div v-if="showForm.table" v-loading="loading" class="content">
             <img
+                v-if="activeName == 'v1'"
                 src="@/assets/images/Frame 427319135 (1).png"
                 alt=""
-                v-if="activeName == 'v1'"
                 @click="
                     showForm.v1 = true;
                     showForm.table = false;
                 "
             />
             <img
+                v-if="activeName == 'v2'"
                 src="@/assets/images/Frame 427319135.png"
                 alt=""
-                v-if="activeName == 'v2'"
                 @click="
                     showForm.v2 = true;
                     showForm.table = false;
                 "
             />
             <img
+                v-if="activeName == 'v3'"
                 src="@/assets/images/Frame 427319135 (2).png"
                 alt=""
-                v-if="activeName == 'v3'"
                 @click="
                     showForm.v3 = true;
                     showForm.table = false;
                 "
             />
             <img
+                v-if="activeName == 'v4'"
                 src="@/assets/images/Frame 427319135 (3).png"
                 alt=""
-                v-if="activeName == 'v4'"
                 @click="
                     showForm.v4 = true;
                     showForm.table = false;
                 "
             />
             <img
+                v-if="activeName == 'v5'"
                 src="@/assets/images/Frame 427319135 (4).png"
                 alt=""
-                v-if="activeName == 'v5'"
                 @click="
                     showForm.v5 = true;
                     showForm.table = false;
                 "
             />
-            <div class="table" v-if="!loading">
+            <div v-if="!loading" class="table">
                 <el-table :data="tableData[activeName]" width="auto" header-row-class-name="table-head">
                     <el-table-column
+                        v-for="c in columns[activeName]"
                         style="height: 120px"
                         :prop="c.prop"
                         :label="c.label"
-                        v-for="c in columns[activeName]"
                         align="center"
                     />
 
                     <el-table-column style="height: 120px" align="center" label="操作">
                         <template #default="scope">
-                            <el-button link type="primary" size="small" v-if="scope.row.d == '生效'">失效</el-button>
-                            <el-button link type="primary" size="small" v-if="scope.row.d == '失效'">生效</el-button>
-                            <el-button link type="primary" size="small" v-if="scope.row.d == '失效'">编辑</el-button>
+                            <el-button v-if="scope.row.d == '生效'" link type="primary" size="small">失效</el-button>
+                            <el-button v-if="scope.row.d == '失效'" link type="primary" size="small">生效</el-button>
+                            <el-button v-if="scope.row.d == '失效'" link type="primary" size="small">编辑</el-button>
                             <el-button link type="primary" size="small">查看详情</el-button>
                         </template>
                     </el-table-column>
@@ -83,7 +83,7 @@
             </div>
         </div>
         <template v-if="!showForm.table">
-            <div class="add" v-loading="addLoading">
+            <div v-loading="addLoading" class="add">
                 <div class="module">
                     <img src="@/assets/images/Frame 427319103 (1).png" alt="" />
 
@@ -136,7 +136,7 @@
 
                 <div class="module">
                     <img src="@/assets/images/Frame 427319103 (2).png" alt="" />
-                    <div class="form-c" v-if="activeName == 'v1'">
+                    <div v-if="activeName == 'v1'" class="form-c">
                         <el-form
                             ref="ruleFormRef"
                             style="max-width: 100%"
@@ -181,7 +181,7 @@
                             </el-row>
                         </el-form>
                     </div>
-                    <div class="form-c" v-if="activeName == 'v2'">
+                    <div v-if="activeName == 'v2'" class="form-c">
                         <el-form
                             ref="ruleFormRef"
                             style="max-width: 100%"
@@ -239,7 +239,7 @@
                             </el-row>
                         </el-form>
                     </div>
-                    <div class="form-c" v-if="activeName == 'v3'">
+                    <div v-if="activeName == 'v3'" class="form-c">
                         <el-form
                             ref="ruleFormRef"
                             style="max-width: 100%"
@@ -315,7 +315,7 @@
                             </el-row>
                         </el-form>
                     </div>
-                    <div class="form-c" v-if="activeName == 'v4'">
+                    <div v-if="activeName == 'v4'" class="form-c">
                         <el-form
                             ref="ruleFormRef"
                             style="max-width: 100%"
@@ -348,9 +348,9 @@
                         </el-form>
                     </div>
                 </div>
-                <div class="module" v-if="activeName == 'v2'">
+                <div v-if="activeName == 'v2'" class="module">
                     <img src="@/assets/images/Frame 427319103.png" alt="" />
-                    <div class="form-c" v-if="activeName == 'v2'">
+                    <div v-if="activeName == 'v2'" class="form-c">
                         <el-form
                             ref="ruleFormRef"
                             style="max-width: 100%"
@@ -373,15 +373,20 @@
                     </div>
                 </div>
 
-                <div class="module" v-if="activeName == 'v3'">
+                <div v-if="activeName == 'v3'" class="module">
                     <img src="@/assets/images/Frame 427319103 (1).png" alt="" />
-                    <div class="form-c" v-if="activeName == 'v3'">
+                    <div v-if="activeName == 'v3'" class="form-c">
                         <el-checkbox value="短信" name="短信">短信</el-checkbox>
                         <el-checkbox value="消息通知" name="消息通知">消息通知</el-checkbox>
                         <el-checkbox value="邮件" name="邮件">邮件</el-checkbox>
                     </div>
                 </div>
-                <img src="@/assets/images/Frame 427319116 (1).png" alt="" @click="handleClose" />
+                <img
+                    src="@/assets/images/Frame 427319116 (1).png"
+                    style="cursor: pointer"
+                    alt=""
+                    @click="handleClose"
+                />
             </div>
         </template>
     </div>
@@ -389,6 +394,7 @@
 <script setup>
     import { ref } from 'vue';
     import Moment from 'moment';
+
     const t1 = [
         {
             a: 'GDPG00163784394',
@@ -711,6 +717,14 @@
         background: #000928;
         height: 95%;
         overflow: scroll;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+
+        /* 隐藏水平滚动条 */
+        &::-webkit-scrollbar {
+            height: 0;
+        }
         .head {
             background: #111037;
             padding: 20px 0;
@@ -731,7 +745,6 @@
             background: #111037;
             flex-direction: column;
             gap: 50px;
-            height: 100%;
             img {
                 width: 100%;
                 cursor: pointer;
