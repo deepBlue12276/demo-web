@@ -39,10 +39,10 @@
                     @mouseenter="() => (showHover = true)"
                     @mouseleave="() => (showHover = false)"
                 >
-                    <img v-show="!showHover && current == 'd2'" src="@/assets/images/Group.png" alt="" />
+                    <img v-show="!showHover && current == 'd2'" src="@/assets/images/地图.png" alt="" />
                     <img
                         v-show="showHover && current == 'd2'"
-                        src="@/assets/images/Group1.png"
+                        src="@/assets/images/地图-芙蓉区.png"
                         alt=""
                         @click="
                             loadingFull(() => {
