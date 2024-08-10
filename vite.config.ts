@@ -10,7 +10,7 @@ import postcssPxToRem from 'postcss-pxtorem';
 export default ({ mode }) => {
     const root = process.cwd();
     return defineConfig({
-        // base: '/prd.demo/',
+        base: '/prd.demo/',
         plugins: [
             vue(),
             AutoImport({

@@ -1,5 +1,13 @@
 const routes = [
     {
+        path: '/',
+        redirect: '/gd/gdlist'
+    },
+    {
+        path: '/dp',
+        component: () => import('@/views/dp/index.vue')
+    },
+    {
         path: '/zb',
         component: () => import('@/views/zb/head.vue'),
         children: [
