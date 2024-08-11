@@ -10,9 +10,9 @@
             </el-tabs>
             <div class="form">
                 <img src="@/assets/images/Frame 427319103.png" alt="" />
-                <img src="@/assets/images/Frame 427319111 (1).png" alt="" />
-                <img src="@/assets/images/Frame 427319114 (4).png" alt="" />
-                <img src="@/assets/images/Frame 427319115 (2).png" alt="" />
+                <img src="@/assets/images/Frame 427319111 copy.png" alt="" />
+                <img src="@/assets/images/Frame 427319114 copy.png" alt="" />
+                <img src="@/assets/images/Frame 427319115 copy 2.png" alt="" />
             </div>
         </div>
         <div v-if="showForm.table" v-loading="loading" class="content">
