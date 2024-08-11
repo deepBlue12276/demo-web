@@ -113,3 +113,7 @@ colgroup {
   --el-button-bg-color: #57A1FB!important;
   --el-button-text-color: #fff!important;
 }
+.el-button--primary.is-link, .el-button--primary.is-plain, .el-button--primary.is-text {
+  --el-button-text-color: #57A1FB!important;
+
+}

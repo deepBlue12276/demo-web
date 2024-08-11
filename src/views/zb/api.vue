@@ -47,12 +47,12 @@
                     <el-input v-model="formList.b" placeholder="请输入" />
                 </el-form-item>
                 <el-form-item label="接口权限等级：" prop="" required>
-                    <el-input v-model="formList.c" placeholder="请输入" />
-                </el-form-item>
-                <el-form-item label="接口权限地址：" prop="" required>
                     <el-select v-model="formList.d" placeholder="请选择">
                         <el-option label="一级菜单" value="一级菜单" />
                     </el-select>
+                </el-form-item>
+                <el-form-item label="接口权限地址：" prop="" required>
+                    <el-input v-model="formList.c" placeholder="请输入" />
                 </el-form-item>
                 <el-form-item label="请求方式：" prop="" required>
                     <el-input v-model="formList.e" placeholder="请输入" />
@@ -129,7 +129,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '4',
             b: 'ZB00000004',
             c: '派单人处理',
             d: 'IOP',
@@ -140,7 +140,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '5',
             b: 'ZB00000005',
             c: '黑白名单分页查询',
             d: 'IOP',
@@ -151,7 +151,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '6',
             b: 'ZB00000006',
             c: '黑白名单分页查询',
             d: 'IOP',
@@ -162,7 +162,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '7',
             b: 'ZB00000007',
             c: '黑白名单分页查询',
             d: 'IOP',
@@ -173,7 +173,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '8',
             b: 'ZB00000008',
             c: '黑白名单分页查询',
             d: 'IOP',
@@ -184,7 +184,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '9',
             b: 'ZB00000009',
             c: '任务调度',
             d: 'IOP',
@@ -195,7 +195,7 @@
             i: '2024-08-01 03:48'
         },
         {
-            a: '1',
+            a: '10',
             b: 'ZB000000010',
             c: 'oao外部渠道处理',
             d: 'IOP',
@@ -270,13 +270,16 @@
             b: 'GDPG0016',
             c: formList.value.b,
             d: formList.value.g,
-            e: formList.value.c,
+            e: '一级',
             f: '1',
             g: formList.value.e,
             h: Moment(now).format('yyyy-MM-DD HH:mm'),
             i: Moment(now).format('yyyy-MM-DD HH:mm')
         });
         tableData.value.pop();
+        tableData.value.forEach((item, index) => {
+            item.a = index + 1;
+        });
         setTimeout(() => {
             showForm.value = true;
             addLoading.value = false;
