@@ -13,8 +13,23 @@
                         <span>{{ msg.msg }}</span>
                     </div>
                 </template>
-                <div v-else v-loading="msg.loading" class="ai-msg-box">
-                    <img v-show="!msg.loading" :src="msg.msg" alt="" class="ai-msg" />
+                <template v-if="msg.type == 'img'">
+                    <div class="user-img">
+                        <img :src="msg.msg" alt="" />
+                    </div>
+                </template>
+                <div v-if="msg.type == 'ai'" v-loading="msg.loading" class="ai-msg-box">
+                    <img v-show="!msg.loading && msg.msg" :src="msg.msg" alt="" class="ai-msg" />
+                    <div v-show="!msg.loading && !msg.msg" class="box">
+                        <img src="@/assets/images/图层 1 1 copy.png" alt="" class="icon" />
+                        <div class="msg">
+                            好的哦，任务已接取，请小主按时完成哦，请网格经理到达目的后先完成任务第一项打卡操作哦!请点击<span
+                                @click="dkClick"
+                                >&nbsp;打卡</span
+                            >
+                            拍照发给我就可以啦!
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,14 +47,18 @@
             <div class="right"></div>
         </div>
     </div>
+    <div v-if="isVisible" class="fullscreen-video" @click="close">
+        <video ref="video" :src="videoSrc" autoplay muted playsinline webkit-playsinline @ended="onVideoEnded"></video>
+    </div>
 </template>
 <script setup>
     import { ref, nextTick } from 'vue';
     import msg1 from '@/assets/images/Frame 1597880501.png';
-    import msg2 from '@/assets/images/Frame 1597880503.png';
+    import videoS from '@/assets/images/4ad7de3c30bb845d04c5f67922faa16f.mp4';
     import msg3 from '@/assets/images/Frame 1597880506.png';
     import msg4 from '@/assets/images/Frame 1597880505.png';
     import msg5 from '@/assets/images/Frame 1597880508.png';
+    import msg6 from '@/assets/images/微信图片_20240811152252.jpg';
 
     const msgBox = ref();
     const msgList = ref([]);
@@ -47,22 +66,30 @@
     const onScroll = (el) => {
         console.log(el);
     };
-    const onSearch = () => {
+    const onSearch = (e, type) => {
         const l = msgList.value.length;
         let msg;
         if (l == 0) {
             msg = msg1;
         } else if (l == 2) {
-            msg = msg2;
+            msg = null;
         } else if (l == 4) {
             msg = msg3;
         } else if (l == 7) {
             msg = msg5;
         }
-        msgList.value.push({
-            type: 'user',
-            msg: inputValue.value
-        });
+        if (type == 'img') {
+            msgList.value.push({
+                type: 'img',
+                msg: msg6
+            });
+        } else {
+            msgList.value.push({
+                type: 'user',
+                msg: inputValue.value
+            });
+        }
+
         inputValue.value = '';
         msgList.value.push({
             type: 'ai',
@@ -95,8 +122,28 @@
             }, 500);
         });
     };
+    const videoSrc = ref('');
+    const isVisible = ref(false);
+    const video = ref(null);
+    const onVideoEnded = () => {
+        isVisible.value = false;
+        onSearch('', 'img');
+    };
+    const dkClick = () => {
+        isVisible.value = true;
+        nextTick(() => {
+            videoSrc.value = videoS;
+            video.value.requestFullscreen();
+        });
+    };
 </script>
 <style scoped lang="scss">
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        outline: none;
+    }
     .wrap {
         background: #e9f2ff;
         height: 100%;
@@ -142,6 +189,15 @@
                     font-size: 34px;
                 }
             }
+            .user-img {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                img {
+                    width: 50%;
+                    border-radius: 40px;
+                }
+            }
             .ai-msg {
                 width: 100%;
             }
@@ -167,6 +223,29 @@
         }
         .ai-msg-box {
             width: 100%;
+        }
+        .box {
+            display: flex;
+            flex-direction: row;
+            img {
+                height: 150px;
+            }
+            .msg {
+                display: block;
+                width: 82%;
+                background: #fff;
+                border-radius: 10px 30px 30px 30px;
+                color: #14181c;
+                padding: 30px;
+                font-size: 35px;
+                font-family: PingFang SC;
+                line-height: 50px;
+                font-weight: 500;
+                span {
+                    color: #0078fe;
+                    cursor: pointer;
+                }
+            }
         }
     }
 </style>
