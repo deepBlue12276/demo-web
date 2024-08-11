@@ -9,7 +9,7 @@
                 default-active="1"
                 text-color="#fff"
             >
-                <el-menu-item index="1" @click="menuClick(1)">
+                <el-menu-item index="1" @click="menuClick('/zb/zb1')">
                     <img class="menu-icon" src="@/assets/images/菜单图标.png" alt="" />
                     <span>指标库</span>
                 </el-menu-item>
@@ -22,7 +22,7 @@
                     <span>指标整合图表</span>
                 </el-menu-item>
             </el-menu>
-            <div class="content" v-loading="loading">
+            <div v-loading="loading" class="content">
                 <div class="view">
                     <router-view></router-view>
                 </div>
@@ -33,6 +33,7 @@
 <script setup>
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
+
     const loading = ref(false);
     const router = useRouter();
     const menuClick = (path) => {

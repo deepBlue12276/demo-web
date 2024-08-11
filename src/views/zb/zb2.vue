@@ -8,8 +8,8 @@
                         <div class="list">
                             <div class="list-item" @mousedown="onMouseDown($event, 1)">区域派发工单</div>
                             <div
-                                class="list-item draggable"
                                 v-if="isDragging[1]"
+                                class="list-item draggable"
                                 :style="{ top: position[dragType].y + 'px', left: position[dragType].x + 'px' }"
                             >
                                 区域派发工单
@@ -17,8 +17,8 @@
                             <div class="list-item">区域待处理工单</div>
                             <div class="list-item" @mousedown="onMouseDown($event, 2)">区域已处理工单</div>
                             <div
-                                class="list-item draggable"
                                 v-if="isDragging[2]"
+                                class="list-item draggable"
                                 :style="{ top: position[dragType].y + 'px', left: position[dragType].x + 'px' }"
                             >
                                 区域已处理工单
@@ -47,8 +47,8 @@
                             <div class="list-item">年</div>
                             <div class="list-item" @mousedown="onMouseDown($event, 0)">月</div>
                             <div
-                                class="list-item draggable"
                                 v-if="isDragging[0]"
+                                class="list-item draggable"
                                 :style="{ top: position[dragType].y + 'px', left: position[dragType].x + 'px' }"
                             >
                                 月
@@ -69,7 +69,7 @@
                     header-row-class-name="table-head"
                     :style="`width: ${tableWidth}px; background: #404087`"
                 >
-                    <el-table-column :prop="c.prop" :label="c.label" width="150" v-for="c in columns" align="center" />
+                    <el-table-column v-for="c in columns" :prop="c.prop" :label="c.label" width="150" align="center" />
                 </el-table>
             </div>
         </div>
@@ -78,6 +78,7 @@
 </template>
 <script setup>
     import { ref } from 'vue';
+
     const c1 = [
         {
             prop: 'm',

@@ -1,43 +1,34 @@
 <template>
     <div class="wrap">
+        <img src="@/assets/images/左侧.png" class="left" alt="" @mousedown="onMouseDown" />
         <img
-            src="@/assets/images/左侧 (1).png"
-            v-if="route.query.type == '1'"
-            class="left"
+            v-show="isDragging"
+            src="@/assets/images/Pie Chart 饼环图.png"
             alt=""
-            @mousedown="onMouseDown"
+            class="drag"
+            :style="{ top: position.y + 'px', left: position.x + 'px' }"
         />
-        <img v-else src="@/assets/images/左侧.png" class="left" alt="" @mousedown="onMouseDown" />
-
         <div class="middle">
             <img src="@/assets/images/按钮.png" class="btns" alt="" />
             <div class="middle-c">
-                <img src="@/assets/images/Pie Chart 饼环图.png" v-show="showDrag" alt="" class="chart1" />
-                <img src="@/assets/images/Column Chart 柱形图.png" alt="" class="chart2" />
+                <img v-show="showDrag" src="@/assets/images/Pie Chart 饼环图.png" alt="" class="chart1" />
+                <!-- <img src="@/assets/images/Column Chart 柱形图.png" alt="" class="chart2" /> -->
             </div>
         </div>
-        <img src="@/assets/images/右侧 (1).png" v-if="route.query.type == '1'" alt="" class="right" />
-        <img src="@/assets/images/右侧.png" v-else alt="" class="right" />
+        <img v-if="route.query.type == '1'" src="@/assets/images/右侧 (1).png" alt="" class="right" />
+        <img v-else src="@/assets/images/右侧.png" alt="" class="right" />
     </div>
-    <img
-        v-show="isDragging"
-        src="@/assets/images/Pie Chart 饼环图.png"
-        alt=""
-        class="drag"
-        :style="{ top: position.y + 'px', left: position.x + 'px' }"
-    />
 </template>
 <script setup>
     import { ref } from 'vue';
     import { useRoute } from 'vue-router';
+
     const route = useRoute();
-    const position = ref({ x: 0, y: 0 });
+    const position = ref({ x: 650, y: 1200 });
     const isDragging = ref(false);
     const offset = ref({ x: 0, y: 0 });
     const showDrag = ref(false);
     const onMouseDown = (event) => {
-        position.value.x = event.clientX;
-        position.value.y = event.clientY;
         offset.value = {
             x: event.clientX - position.value.x,
             y: event.clientY - position.value.y

@@ -101,3 +101,15 @@ colgroup {
 .el-checkbox {
 --el-checkbox-text-color:#CCD1E5!important;
 }
+.el-dialog {
+  --el-dialog-bg-color: #1A1848!important;
+}
+.el-button {
+  --el-button-bg-color: #1A1848!important;
+  --el-button-text-color: #57A1FB!important;
+  --el-button-border-color: #57A1FB!important;
+}
+.el-button--primary {
+  --el-button-bg-color: #57A1FB!important;
+  --el-button-text-color: #fff!important;
+}

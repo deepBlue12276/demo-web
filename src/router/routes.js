@@ -8,6 +8,10 @@ const routes = [
         component: () => import('@/views/dp/index.vue')
     },
     {
+        path: '/api',
+        component: () => import('@/views/zb/api.vue')
+    },
+    {
         path: '/zb',
         component: () => import('@/views/zb/head.vue'),
         children: [
