@@ -73,7 +73,17 @@
                 </el-table>
             </div>
         </div>
-        <img src="@/assets/images/右侧 (2).png" alt="" class="right" />
+        <div class="right">
+            <div class="title"><van-icon name="arrow-down" />统计维度列</div>
+            <div class="box">
+                <div class="t1">月<van-icon name="cross" /></div>
+            </div>
+            <div class="title"><van-icon name="arrow-down" />求和列</div>
+            <div class="box">
+                <div class="t1">派发量<van-icon name="cross" /></div>
+                <div class="t1">处理量<van-icon name="cross" /></div>
+            </div>
+        </div>
     </div>
 </template>
 <script setup>
@@ -388,6 +398,39 @@
         user-select: none;
     }
     .right {
-        height: 100%;
+        flex: 1;
+        background: #191848;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        .title {
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            background: #252451;
+            padding-left: 50px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .box {
+            background: #1f1d50;
+            border: 1px solid #797be9;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 30px;
+            width: 90%;
+            height: 500px;
+            .t1 {
+                background: #27255f;
+                height: 100px;
+                padding: 0 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+                align-items: center;
+            }
+        }
     }
 </style>

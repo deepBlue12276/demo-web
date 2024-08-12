@@ -16,8 +16,19 @@
                 <!-- <img src="@/assets/images/Column Chart 柱形图.png" alt="" class="chart2" /> -->
             </div>
         </div>
-        <img v-if="route.query.type == '1'" src="@/assets/images/右侧 (1).png" alt="" class="right" />
-        <img v-else src="@/assets/images/右侧.png" alt="" class="right" />
+        <div class="right">
+            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+                <el-tab-pane label="设计" name="v1" class="v1">
+                    <img src="@/assets/images/Frame 30.png" class="btns" alt="" />
+                    <img src="@/assets/images/Frame 31.png" class="btns" alt="" />
+                    <img src="@/assets/images/Frame 32.png" class="btns" alt="" />
+                </el-tab-pane>
+                <el-tab-pane label="数据" name="v2" class="v1">
+                    <img src="@/assets/images/Frame 427319111 (1) copy.png" class="btns" alt="" />
+                    <img src="@/assets/images/Frame 427319116 (1) copy.png" class="btns" alt="" />
+                </el-tab-pane>
+            </el-tabs>
+        </div>
     </div>
 </template>
 <script setup>
@@ -60,6 +71,8 @@
     };
 </script>
 <style scoped lang="scss">
+    .demo-tabs {
+    }
     .draggable {
         width: 400px;
 
@@ -82,7 +95,11 @@
             height: 100%;
         }
         .right {
+            flex: 1;
             height: 100%;
+            img {
+                width: 90%;
+            }
         }
         .middle {
             display: flex;
