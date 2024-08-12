@@ -251,7 +251,7 @@
                 font-size: 35px;
                 font-family: PingFang SC;
                 line-height: 50px;
-                font-weight: 500;
+                font-weight: 400;
                 span {
                     color: #0078fe;
                     cursor: pointer;

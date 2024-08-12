@@ -9,6 +9,31 @@
         <div v-if="dialog3" class="dialog" @click="dialog3 = false">
             <img src="@/assets/images/Group 1321315624 copy.png" alt="" @click="dialog3 = false" />
         </div>
+        <el-dialog v-model="dialog4" title="" width="600" :before-close="handleClose">
+            <div class="dialog-t">
+                <span>是否发起外呼</span>
+            </div>
+            <template #footer>
+                <div class="dialog-footer">
+                    <el-button type="primary" @click="dialog4 = false"> 是 </el-button>
+                    <el-button @click="dialog4 = false">否</el-button>
+                </div>
+            </template>
+        </el-dialog>
+        <el-dialog v-model="dialog5" title="" width="600" :before-close="handleClose">
+            <div class="dialog-t">
+                <span>是否发起在线会议</span>
+            </div>
+            <template #footer>
+                <div class="dialog-footer">
+                    <el-button type="primary" @click="dialog5 = false"> 是 </el-button>
+                    <el-button @click="dialog5 = false">否</el-button>
+                </div>
+            </template>
+        </el-dialog>
+        <div v-if="dialog6" class="dialog6" @click="dialog6 = false">
+            <img src="@/assets/images/501723429284_.pic.jpg" alt="" @click="dialog6 = false" />
+        </div>
         <img class="head" src="@/assets/images/7.png" />
         <div class="content">
             <img v-if="current == 'd1'" src="@/assets/images/Frame 427320245.png" alt="" class="left" />
@@ -129,10 +154,10 @@
                         <div class="loadText">{{ loadText }}</div>
                         <div class="text">建议操作：</div>
                         <div class="btns">
-                            <div class="btn">查看监控</div>
-                            <div class="btn">外呼</div>
-                            <div class="btn">发起在线会议</div>
-                            <div class="btn">发起调度任务</div>
+                            <div class="btn" @click="dialog1 = true">查看监控</div>
+                            <div class="btn" @click="dialog4 = true">外呼</div>
+                            <div class="btn" @click="dialog5 = true">发起在线会议</div>
+                            <div class="btn" @click="dialog6 = true">发起调度任务</div>
                         </div>
                     </div>
                 </div>
@@ -190,6 +215,9 @@
     const dialog1 = ref(false);
     const dialog2 = ref(false);
     const dialog3 = ref(false);
+    const dialog4 = ref(false);
+    const dialog5 = ref(false);
+    const dialog6 = ref(false);
 </script>
 <style scoped lang="scss">
     .page {
@@ -320,6 +348,7 @@
                         justify-content: space-around;
                         flex-wrap: wrap;
                         .btn {
+                            cursor: pointer;
                             height: 80px;
                             line-height: 80px;
                             width: 200px;
@@ -361,5 +390,30 @@
         left: 50%;
         transform: translateX(-50%);
         transform: translateY(-50%); */
+    }
+    .dialog6 {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999;
+        background: #0000004b;
+        text-align: center;
+        img {
+            width: 100%;
+            cursor: pointer;
+        }
+    }
+    .dialog-footer {
+        display: flex;
+        justify-content: center;
+        gap: 200px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    .dialog-t {
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+        font-size: 40px;
     }
 </style>
