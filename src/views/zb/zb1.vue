@@ -1,13 +1,14 @@
 <template>
+    <img
+        v-show="isDragging"
+        ref="draggable"
+        src="@/assets/images/Pie Chart 饼环图.png"
+        alt=""
+        class="draggable"
+        :style="{ top: position.y, left: position.x }"
+    />
     <div class="wrap">
         <img src="@/assets/images/左侧.png" class="left" alt="" @mousedown="onMouseDown" />
-        <img
-            v-show="isDragging"
-            src="@/assets/images/Pie Chart 饼环图.png"
-            alt=""
-            class="drag"
-            :style="{ top: position.y + 'px', left: position.x + 'px' }"
-        />
         <div class="middle">
             <img src="@/assets/images/按钮.png" class="btns" alt="" />
             <div class="middle-c">
@@ -24,14 +25,16 @@
     import { useRoute } from 'vue-router';
 
     const route = useRoute();
-    const position = ref({ x: 650, y: 1200 });
+    const position = ref({ x: '40%', y: '90%' });
     const isDragging = ref(false);
     const offset = ref({ x: 0, y: 0 });
     const showDrag = ref(false);
+    const draggable = ref();
     const onMouseDown = (event) => {
+        console.log(draggable);
         offset.value = {
-            x: event.clientX - position.value.x,
-            y: event.clientY - position.value.y
+            x: event.clientX - draggable.value.offsetLeft,
+            y: event.clientY - draggable.value.offsetTop
         };
         isDragging.value = true;
         document.addEventListener('mousemove', onMouseMove);
@@ -39,14 +42,17 @@
     };
 
     const onMouseMove = (event) => {
+        console.log(isDragging.value);
         if (!isDragging.value) return;
+        console.log(event.clientX);
         position.value = {
-            x: event.clientX - offset.value.x,
-            y: event.clientY - offset.value.y
+            x: event.clientX - offset.value.x + 'px',
+            y: event.clientY - offset.value.y + 'px'
         };
     };
 
     const onMouseUp = () => {
+        console.log('up');
         isDragging.value = false;
         showDrag.value = true;
         document.removeEventListener('mousemove', onMouseMove);
@@ -54,8 +60,14 @@
     };
 </script>
 <style scoped lang="scss">
-    .drag {
+    .draggable {
         width: 400px;
+
+        position: absolute;
+        cursor: grab;
+        user-select: none;
+    }
+    .drag {
         position: absolute;
         cursor: grab;
         user-select: none;

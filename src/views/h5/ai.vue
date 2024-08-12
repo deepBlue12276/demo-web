@@ -138,6 +138,24 @@
     };
 </script>
 <style scoped lang="scss">
+    /* 隐藏所有默认控件 */
+    video::-webkit-media-controls {
+        display: none !important;
+    }
+
+    video::-moz-media-controls {
+        display: none !important;
+    }
+
+    video::-ms-media-controls {
+        display: none !important;
+    }
+
+    /* 针对不同浏览器的隐藏控件的方式 */
+    video::part(media-controls) {
+        display: none !important;
+    }
+
     .fullscreen-video {
         position: fixed;
         top: 0;
